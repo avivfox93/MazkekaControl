@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private double temp = 0.0;
     Thread thread;
     Button btn;
+    Button settings;
     TextView txt;
     ImageView connected;
     public boolean isConnected = false;
@@ -71,6 +72,14 @@ public class MainActivity extends AppCompatActivity {
         });
         connected = (ImageView) findViewById(R.id.imageView);
         txt = (TextView) findViewById(R.id.textView);
+        settings = (Button) findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(MainActivity.this,SettingsActivity.class);
+                startActivity(mIntent);
+            }
+        });
         btn = (Button) findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
