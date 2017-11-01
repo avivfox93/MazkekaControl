@@ -33,7 +33,6 @@ public class SettingsActivity extends AppCompatActivity {
         ipText = (EditText) findViewById(R.id.ipText);
         portText = (EditText) findViewById(R.id.portText);
         String[] address = saveLoad.loadAddress().split(",");
-        Log.e("LOADED",address[0] + " " + address[1]);
         if(address.length == 2){
             IP = address[0];
             PORT = Integer.valueOf(address[1]);
@@ -49,6 +48,7 @@ public class SettingsActivity extends AppCompatActivity {
                 save[1] = portText.getText().toString();
                 String fsave = save[0] + "," + save[1];
                 saveLoad.saveAddress(fsave);
+                saveLoad.setAddress();
             }
         });
 

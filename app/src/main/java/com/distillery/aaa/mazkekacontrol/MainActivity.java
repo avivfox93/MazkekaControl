@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public int tails = 0;
     public int finish = 0;
     private double temp = 0.0;
-    Thread thread;
+    SaveLoad saveLoad;
     Button btn;
     Button settings;
     TextView txt;
@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        saveLoad = new SaveLoad(getApplicationContext());
+        saveLoad.setAddress();
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         not = new Notifications(mNotificationManager, getApplicationContext());
         server = new UDPServer(new UDPServer.onReceive() {
@@ -149,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                txt.setText(temp);
+                txt.setText("Temp is: " + temp + "C");
             }
         });
     }

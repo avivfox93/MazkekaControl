@@ -16,7 +16,7 @@
         android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Ethanol"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Methanol"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ethanol" />
@@ -46,7 +46,7 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Tails"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/methanol" />
@@ -61,7 +61,7 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Finish"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tails" />

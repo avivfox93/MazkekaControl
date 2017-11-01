@@ -70,4 +70,12 @@ public class SaveLoad {
         prefs.apply();
     }
 
+    public void setAddress(){
+        String[] loaded = loadAddress().split(",");
+        if (loaded.length == 2){
+            UDPServer.SERVER = loaded[0];
+            UDPServer.PORT = Integer.valueOf(loaded[1]);
+        }
+    }
+
 }
