@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,12 +33,12 @@ public class SettingsActivity extends AppCompatActivity {
         ipText = (EditText) findViewById(R.id.ipText);
         portText = (EditText) findViewById(R.id.portText);
         String[] address = saveLoad.loadAddress().split(",");
-
+        Log.e("LOADED",address[0] + " " + address[1]);
         if(address.length == 2){
             IP = address[0];
-            PORT = Integer.getInteger(address[1]);
+            PORT = Integer.valueOf(address[1]);
             ipText.setText(IP);
-            portText.setText(PORT);
+            portText.setText(Integer.toString(PORT));
         }
 
         save.setOnClickListener(new View.OnClickListener() {
