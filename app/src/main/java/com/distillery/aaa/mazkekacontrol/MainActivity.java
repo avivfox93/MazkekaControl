@@ -1,11 +1,15 @@
 package com.distillery.aaa.mazkekacontrol;
 
 import android.app.NotificationManager;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableContainer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -21,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
     public int tails = 0;
     public int finish = 0;
     private double temp = 0.0;
+    Thread thread;
     Button btn;
     TextView txt;
+    ImageView connected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("msg","RCV");
                 JSONObject json = new JSONObject();
                 String sit = "";
+                changeSIT();
                 try{
                     json = new JSONObject(new String(data.getData()));
                     if (json.getString("msg").equals("temp")) {
@@ -59,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        connected = (ImageView) findViewById(R.id.imageView);
         txt = (TextView) findViewById(R.id.textView);
         btn = (Button) findViewById(R.id.button);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -115,5 +123,13 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return x;
+    }
+    private void changeSIT(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                connected.setImageResource(R.drawable.presence_online);
+            }
+        });
     }
 }
