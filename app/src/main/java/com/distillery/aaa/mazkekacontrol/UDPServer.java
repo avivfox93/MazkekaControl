@@ -17,6 +17,8 @@ public class UDPServer {
     public DatagramSocket socket;
     private onReceive listener;
     private Thread listen;
+    public static String SERVER = "10.0.0.63";
+    public static int PORT = 5657;
     private boolean sit = true;
 
     public UDPServer(onReceive udpCallback){
@@ -25,6 +27,7 @@ public class UDPServer {
             socket = new DatagramSocket();
             socket.setBroadcast(true);
             socket.setReuseAddress(true);
+            listen();
         }catch (SocketException e){
             e.printStackTrace();
         }
@@ -55,6 +58,30 @@ public class UDPServer {
 
     public void send(DatagramPacket packet){
         try {
+            socket.send(packet);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void send(String msg, String IP, int port){
+        try {
+            byte[] buff = msg.getBytes();
+            DatagramPacket packet = new DatagramPacket(buff, buff.length);
+            packet.setAddress(InetAddress.getByName(IP));
+            packet.setPort(port);
+            socket.send(packet);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void send(String msg){
+        try {
+            byte[] buff = msg.getBytes();
+            DatagramPacket packet = new DatagramPacket(buff, buff.length);
+            packet.setAddress(InetAddress.getByName(SERVER));
+            packet.setPort(PORT);
             socket.send(packet);
         }catch (IOException e){
             e.printStackTrace();

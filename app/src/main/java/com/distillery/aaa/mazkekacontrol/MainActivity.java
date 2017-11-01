@@ -1,7 +1,12 @@
 package com.distillery.aaa.mazkekacontrol;
 
+import android.app.NotificationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,31 +21,50 @@ public class MainActivity extends AppCompatActivity {
     public int tails = 0;
     public int finish = 0;
     private double temp = 0.0;
+    Button btn;
+    TextView txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        not = new Notifications();
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        not = new Notifications(mNotificationManager, getApplicationContext());
         server = new UDPServer(new UDPServer.onReceive() {
             @Override
             public void onReceive(DatagramPacket data) {
+                Log.e("msg","RCV");
                 JSONObject json = new JSONObject();
                 String sit = "";
                 try{
                     json = new JSONObject(new String(data.getData()));
-                    try{
-                        temp = json.getDouble("temp");
-                        sit = json.getString("sit");
-                        if(!manageNotifications(sit)){
-                            not.unoti(Double.toString(temp),sit);
+                    if (json.getString("msg").equals("temp")) {
+                        try {
+                            temp = json.getDouble("temp");
+                            sit = json.getString("sit");
+                            if (!manageNotifications(sit)) {
+                                not.unoti(Double.toString(temp), sit);
+                            }
+                        } catch (JSONException e) {
+                            if (!sit.isEmpty() && temp > 0) {
+                                not.unoti(Double.toString(temp), "NULL");
+                            }
+                            e.printStackTrace();
                         }
-                    }catch (JSONException e){
-                        if (!sit.isEmpty() && temp > 0){
-                            not.unoti(Double.toString(temp),"NULL");
-                        }
-                        e.printStackTrace();
                     }
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+
+            }
+        });
+        txt = (TextView) findViewById(R.id.textView);
+        btn = (Button) findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    server.send(new JSONObject().put("msg", "hi").toString());
                 }catch (JSONException e){
                     e.printStackTrace();
                 }
@@ -54,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
                 if (meth < 2){
                     not.noti(Double.toString(temp),sit);
                     meth++;
+                }else{
+                    not.unoti(Double.toString(temp),sit);
                 }
                 x = true;
                 break;
@@ -61,6 +87,8 @@ public class MainActivity extends AppCompatActivity {
                 if (eth < 2){
                     not.noti(Double.toString(temp),sit);
                     eth++;
+                }else{
+                    not.unoti(Double.toString(temp),sit);
                 }
                 x = true;
                 break;
@@ -68,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
                 if (tails < 2){
                     not.noti(Double.toString(temp),sit);
                     tails++;
+                }else{
+                    not.unoti(Double.toString(temp),sit);
                 }
                 x = true;
                 break;
@@ -75,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
                 if (finish < 2){
                     not.noti(Double.toString(temp),sit);
                     finish++;
+                }else{
+                    not.unoti(Double.toString(temp),sit);
                 }
                 x = true;
                 break;
