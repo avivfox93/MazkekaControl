@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn;
     TextView txt;
     ImageView connected;
+    public boolean isConnected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject json = new JSONObject();
                 String sit = "";
                 changeSIT();
+                isConnected = true;
                 try{
                     json = new JSONObject(new String(data.getData()));
                     if (json.getString("msg").equals("temp")) {
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                             if (!manageNotifications(sit)) {
                                 not.unoti(Double.toString(temp), sit);
                             }
+                            changeTXT(Double.toString(temp));
                         } catch (JSONException e) {
                             if (!sit.isEmpty() && temp > 0) {
                                 not.unoti(Double.toString(temp), "NULL");
@@ -129,6 +132,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 connected.setImageResource(R.drawable.presence_online);
+            }
+        });
+    }
+
+    private void changeTXT(final String temp){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                txt.setText(temp);
             }
         });
     }
