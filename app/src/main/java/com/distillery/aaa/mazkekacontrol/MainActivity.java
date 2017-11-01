@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                     if (json.getString("msg").equals("temp")) {
                         try {
                             temp = json.getDouble("temp");
+                            temp = Double.parseDouble(String.format("%.3f", temp));
                             sit = json.getString("sit");
                             if (!manageNotifications(sit)) {
                                 not.unoti(Double.toString(temp), sit);

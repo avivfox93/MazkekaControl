@@ -25,7 +25,7 @@ public class Notifications extends Activity {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(contx);
         mBuilder.setSmallIcon(R.drawable.launcher);
         mBuilder.setContentTitle("Mazkeka");
-        mBuilder.setContentText(sit + " - " +temp + "C");
+        mBuilder.setContentText(sit + " -  " + String.format(temp, "%.3f") + "C");
         mBuilder.setDefaults(Notification.DEFAULT_ALL);
         mNotificationManager.notify(1, mBuilder.build());
     }
@@ -34,7 +34,7 @@ public class Notifications extends Activity {
         NotificationCompat.Builder mBuilder2 = new NotificationCompat.Builder(contx);
         mBuilder2.setSmallIcon(R.drawable.launcher);
         mBuilder2.setContentTitle("Mazkeka");
-        mBuilder2.setContentText(sit + " - " + temp + "C");
+        mBuilder2.setContentText(sit + " -  " + String.format(temp, "%.3f") + "C");
         mNotificationManager.notify(2, mBuilder2.build());
     }
 }
