@@ -63,7 +63,8 @@ public class SettingsActivity extends AppCompatActivity {
         pins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent myIntent = new Intent(SettingsActivity.this,PinsActivity.class);
+                startActivity(myIntent);
             }
         });
     }
