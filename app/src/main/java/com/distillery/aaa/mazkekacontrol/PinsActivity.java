@@ -44,6 +44,7 @@ public class PinsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sendPins();
+                client.stop();
                 finish();
             }
         });
