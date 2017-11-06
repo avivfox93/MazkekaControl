@@ -57,9 +57,9 @@ public class PinsActivity extends AppCompatActivity {
             int solonoid1Pin = obj.getInt("solonoid1");
             int solonoid2Pin = obj.getInt("solonoid2");
             int hotplatePin = obj.getInt("plate");
-            hotplate.setText(hotplatePin);
-            solonoid1.setText(solonoid1Pin);
-            solonoid2.setText(solonoid2Pin);
+            hotplate.setText(Integer.toString(hotplatePin));
+            solonoid1.setText(Integer.toString(solonoid1Pin));
+            solonoid2.setText(Integer.toString(solonoid2Pin));
         }catch (JSONException e){
             e.printStackTrace();
         }
