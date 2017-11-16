@@ -30,8 +30,8 @@ public class TempsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temps);
 
-        ethIN = (EditText) findViewById(R.id.ethanol);
-        methIN = (EditText) findViewById(R.id.methanol);
+        ethIN = (EditText) findViewById(R.id.methanol);
+        methIN = (EditText) findViewById(R.id.ethanol);
         tailsIN = (EditText) findViewById(R.id.tails);
         finishIN = (EditText) findViewById(R.id.finish);
 

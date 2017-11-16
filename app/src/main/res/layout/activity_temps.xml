@@ -7,7 +7,7 @@
     tools:context="com.distillery.aaa.mazkekacontrol.TempsActivity">
 
     <EditText
-        android:id="@+id/ethanol"
+        android:id="@+id/methanol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -15,14 +15,14 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="Ethanol"
+        android:hint="Methanol"
         android:inputType="number|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/methanol"
+        android:id="@+id/ethanol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -30,11 +30,11 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Methanol"
+        android:hint="Ethanol"
         android:inputType="number|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ethanol" />
+        app:layout_constraintTop_toBottomOf="@+id/methanol" />
 
     <EditText
         android:id="@+id/tails"
@@ -49,7 +49,7 @@
         android:inputType="number|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/methanol" />
+        app:layout_constraintTop_toBottomOf="@+id/ethanol" />
 
     <EditText
         android:id="@+id/finish"
